@@ -1,0 +1,76 @@
+plugins {
+    id 'groovy'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'wf.ai'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.apache.groovy:groovy:4.0.28'
+    implementation 'org.apache.groovy:groovy-json:4.0.28'
+    implementation 'org.bouncycastle:bcprov-jdk18on:1.78.1'
+}
+
+application {
+    mainClass = 'com.wf.YFTool'
+}
+
+
+jar {
+    enabled = false
+
+    manifest {
+        attributes(
+            'Main-Class': application.mainClass.get()
+        )
+    }
+}
+
+shadowJar {
+    archiveClassifier.set('')
+
+    manifest {
+        attributes(
+            'Main-Class': application.mainClass.get()
+        )
+    }
+
+    // 防止合并某些签名 jar 后出现签名校验异常
+    exclude 'META-INF/*.SF'
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.RSA'
+}
+
+tasks.named('build') {
+    dependsOn tasks.named('shadowJar')
+}
+
+tasks.named('startScripts') {
+    dependsOn tasks.named('shadowJar')
+}
+
+tasks.named('distTar') {
+    dependsOn tasks.named('shadowJar')
+}
+
+tasks.named('distZip') {
+    dependsOn tasks.named('shadowJar')
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 21
+}
+
+tasks.withType(GroovyCompile).configureEach {
+    targetCompatibility = '21'
+}
+
+test {
+    useJUnitPlatform()
+}

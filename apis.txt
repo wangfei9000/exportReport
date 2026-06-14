@@ -1,0 +1,104 @@
+# 接口配置文件
+# 格式： [接口名称]  →  下一行 URL  →  可选 @配置  →  后续 JSON 参数（直到下一个 [ 开头）
+# SM4 接口可在 URL 后添加：@sm4Mode=hex、@sm4Key=32位hex密钥
+# 以 # 开头的行仅在接口块之外作为注释忽略
+
+
+
+
+
+[小区模糊搜索]
+https://dpi.yunfangdata.com/dpi/execute?code=GUVPSSJWG9KTX0IK
+{
+  "cityCode": "370700",
+  "communityName": "繁荣",
+  "districtCode": "370782",
+  "cityName": "潍坊市",
+  "districtName": "诸城市"
+}
+
+[2、楼栋列表查询]
+https://dpi.yunfangdata.com/dpi/execute?code=HwWkEnveVGBiCtdT
+{
+  "evaluateCompCode": "0004",
+  "cityCode": "440300",
+  "communityId": "1915737",
+  "districtCode": "440306"
+}
+
+[SM4自动估值]
+http://180.184.51.155:8080/dpi/execute?code=8TWnI8LKw92RXuhJ&accountExternalId=358f5eb811074b81998b10561af618b2
+@sm4Mode=hex
+@sm4Key=2b546becee09087b48e5a15a1654e775
+{
+  "accountExternalId": "358f5eb811074b81998b10561af618b2",
+  "housepType": "01",
+  "buildMarea": 72.56,
+  "cityName": "伊犁哈萨克自治州",
+  "addres": "伊宁市阿依东街69号1单元5层109室",
+  "plvlAdmDiviCd": "650000",
+  "cityCd": "654000",
+  "areaCountyCode": "654002",
+  "assessMode": "01",
+  "assessNo": "",
+  "commtyName": "阿依东街69号1单元5层109室",
+  "housNo": "1单元5层109",
+  "houseBuildDt": "2000-11-20",
+  "buildName": "1单元5层109室",
+  "houseTowardsCode": "01",
+  "belongFlNo": "5",
+  "lngVal": "",
+  "mnlValRsnDesc": "",
+  "taxFeeTpCd": "",
+  "houseUnitNo": "1单元5层109室"
+}
+
+[自动估值]
+https://dpi.yunfangdata.com/dpi/execute?code=CMBZPEKD4YPB8UHG
+{
+  "accountExternalId": "358f5eb811074b81998b10561af618b2",
+  "cityName": "深圳市",
+  "districtName": "南山区",
+  "address": "示例地址",
+  "area": 100,
+  "houseType": "住宅",
+  "mode": "自动"
+}
+
+[生成报告]
+https://dpi.yunfangdata.com/dpi/execute?code=9WRUL5AS6MSO7QVT
+{
+  "accountExternalId": "358f5eb811074b81998b10561af618b2",
+  "estateId": "{{externalId}}",
+  "reportTemplate": "standard-R",
+  "attachmentType": "评估报告"
+}
+
+[批量自动估值]
+https://dpi.yunfangdata.com/dpi/execute?code=CMBZPEKD4YPB8UHG
+{
+  "accountExternalId": "358f5eb811074b81998b10561af618b2",
+  "cityName": "{{城市}}",
+  "districtName": "{{行政区域}}",
+  "address": "{{证载地址}}",
+  "area": "{{建筑面积}}",
+  "houseType": "住宅",
+  "mode": "自动"
+}
+
+[批量生成报告]
+https://dpi.yunfangdata.com/dpi/execute?code=9WRUL5AS6MSO7QVT
+{
+  "accountExternalId": "358f5eb811074b81998b10561af618b2",
+  "estateId": "{{externalId}}",
+  "reportTemplate": "standard-R",
+  "attachmentType": "评估报告",
+  "address":"{{address}}"
+}
+
+[批量下载报告]
+https://dpi.yunfangdata.com
+{
+  "pdfUrl": "{{fileUrl}}",
+  "fileName":"{{id}}-{{address}}.pdf"
+}

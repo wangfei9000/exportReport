@@ -1,0 +1,8 @@
+# 系统设置
+apiListFile=apis.txt
+accountExternalId=358f5eb811074b81998b10561af618b2
+connectTimeoutSeconds=30
+requestTimeoutSeconds=60
+sm4Key=2b546becee09087b48e5a15a1654e775
+sm4HttpUrl=https://dpi.yunfangdata.com/dpi/execute?code=8TWnI8LKw92RXuhJ&accountExternalId=358f5eb811074b81998b10561af618b2
+sm4Mode=hex
